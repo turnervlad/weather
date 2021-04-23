@@ -1,58 +1,52 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
+import React, { useEffect } from 'react';
+import {useSelector, useDispatch} from 'react-redux';
 import './App.css';
+// import { store } from './app/store';
+// import {ADD_CITY_DATA} from './app/store';
 
 function App() {
+  const cities = useSelector(state => state.cities);
+  console.log(cities);
+  const dispatch = useDispatch();
+
+
+  function cityGet (city) {
+      fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&lang=ru&appid=b1ef2fb4dfe2ab9c8640525cfc37cf19`)
+        .then(response => response.json())
+        .then(data => dispatch({type: 'ADD_CITY_DATA', city: city, payload: data}))           
+  }
+
+  useEffect(() => cities.forEach(city => cityGet(city)), []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
+      {cities.map((x,index) => <Card city={x} key={index} />)}
     </div>
   );
+}
+
+function Card({city}) {
+  const data = useSelector(state => state[city])
+  console.log(data);  
+
+  return (
+    <div className="card">
+      <div>{city}</div>
+      <div>Daily temperature:
+        <span className="temperature">
+          17
+        </span>
+      </div>
+      <div>feels like:
+        <span className="feels__like">
+        16.3
+        </span>
+      </div>
+      <div>
+        <button>Update</button>
+      </div>
+    </div>
+  )
 }
 
 export default App;
