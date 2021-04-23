@@ -9,7 +9,7 @@ const initialState = {
 // debugger;
 export const store = createStore(reducer, initialState);
 
-function reducer(action, state = initialState) {  
+function reducer(state = initialState, action) {  
   switch (action.type) {
     case ADD_CITY_DATA:
       return {
@@ -30,9 +30,9 @@ function reducer(action, state = initialState) {
   }
 }
 
-// store.dispatch({
-//   type: 'ADD_NEW_CITY',
-//   text: 'Madrid'
-// })
+store.dispatch({
+  type: 'ADD_NEW_CITY',
+  text: 'Madrid'
+})
 
 console.log(store.getState());

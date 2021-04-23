@@ -20,33 +20,35 @@ function App() {
 
   return (
     <div className="App">
-      {cities.map((x,index) => <Card city={x} key={index} />)}
+      {cities.map((x,index) => <Card city={x} cityGet={cityGet} key={index+x} />)}
     </div>
   );
 }
 
-function Card({city}) {
-  const data = useSelector(state => state[city])
+function Card({city, cityGet}) {
+  const data = useSelector(state => state.citiesData[city])
   console.log(data);  
 
-  return (
+  return data ? (
     <div className="card">
       <div>{city}</div>
       <div>Daily temperature:
         <span className="temperature">
-          17
+          {data.main.temp}
         </span>
       </div>
       <div>feels like:
         <span className="feels__like">
-        16.3
+        {data.main.feels_like}
         </span>
       </div>
       <div>
-        <button>Update</button>
+        <button onClick={() => cityGet(city)}>
+          Update
+        </button>
       </div>
     </div>
-  )
+  ) : null
 }
 
 export default App;
