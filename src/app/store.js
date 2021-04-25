@@ -13,7 +13,6 @@ export const store = createStore(reducer, initialState);
 function reducer(state = initialState, action) {  
   switch (action.type) {
     case ADD_CITY_DATA:
-      console.log(state);
       return {
         ...state,
         citiesData: {
@@ -22,7 +21,6 @@ function reducer(state = initialState, action) {
         }
       }
     case ADD_NEW_CITY:
-      console.log(state);
       return {
         ...state,
         cities: [...state.cities, action.city],
@@ -41,4 +39,4 @@ function reducer(state = initialState, action) {
 //   text: 'Madrid'
 // })
 
-console.log(store.getState());
+// console.log(store.getState());

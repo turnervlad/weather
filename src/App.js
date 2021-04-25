@@ -6,16 +6,12 @@ import './App.css';
 
 function App() {
   const cities = useSelector(state => state.cities);
-  console.log(cities);
   const dispatch = useDispatch();
 
   function cityGet (city) {
       fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&lang=ru&appid=b1ef2fb4dfe2ab9c8640525cfc37cf19`)
         .then(response => response.json())
-        .then(data => {
-          console.log('data', data)
-          dispatch({type: 'ADD_CITY_DATA', city: city, data: data})
-        })           
+        .then(data => dispatch({type: 'ADD_CITY_DATA', city: city, data: data}))           
   }
 
   useEffect(() => cities.forEach(city => cityGet(city)), []);
@@ -55,7 +51,6 @@ function NewCityAdd () {
 
 function Card({city, cityGet}) {
   const data = useSelector(state => state.citiesData[city])
-  console.log(data);  
 
   return data ? (
     <div className="card">
