@@ -50,7 +50,8 @@ function NewCityAdd () {
 }
 
 function Card({city, cityGet}) {
-  const data = useSelector(state => state.citiesData[city])
+  const data = useSelector(state => state.citiesData[city]);
+  const dispatch = useDispatch();
 
   return data ? (
     <div className="card">
@@ -68,6 +69,9 @@ function Card({city, cityGet}) {
       <div>
         <button onClick={() => cityGet(city)}>
           Update
+        </button>
+        <button onClick={() => dispatch({type: "DELETE_CITY", city: city})}>
+          delete
         </button>
       </div>
     </div>
