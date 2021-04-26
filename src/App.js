@@ -6,7 +6,10 @@ import './App.css';
 
 function App() {
   const cities = useSelector(state => state.cities);
-  const dispatch = useDispatch();
+  const dispatch = useDispatch();  
+
+  const localStorageCities = localStorage.getItem('cities');
+  console.log(Boolean(localStorageCities));
 
   function cityGet (city) {
       fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&lang=ru&appid=b1ef2fb4dfe2ab9c8640525cfc37cf19`)
@@ -14,11 +17,29 @@ function App() {
         .then(data => dispatch({type: 'ADD_CITY_DATA', city: city, data: data}))           
   }
 
-  useEffect(() => cities.forEach(city => cityGet(city)), []);
+  useEffect(() => {
+    if (localStorage.getItem('cities')) {
+      // localStorage.getItem('cities').split(',').forEach(city => cityGet(city));
+      
+      localStorage.getItem('cities').split(',').forEach(city => {
+        console.log('city', city);
+        cityGet(city);
+      });
+      // console.log('array',ff);
+    
+    } else {
+      cities.forEach(city => cityGet(city))
+    }
+  }, []);
 
   return (
     <div className="App">
-      {cities.map((city,index) => <Card city={city} cityGet={cityGet} key={index+city} />)}
+      {/* {cities.map((city,index) => <Card city={city} cityGet={cityGet} key={index+city} />)} */}
+      {localStorageCities ? 
+        localStorageCities.split(',').map((city,index) => <Card city={city} cityGet={cityGet} key={index+city} />) : null
+        // cities.map((city,index) => <Card city={city} cityGet={cityGet} key={index+city} />)
+      
+      }
       <NewCityAdd />
     </div>
   );
@@ -27,6 +48,7 @@ function App() {
 function NewCityAdd () {
   const [newCity, setNewCity] = useState('');
   const dispatch = useDispatch();
+  // const cities = useSelector(state => state.cities);
 
   function addNewCity (city) {
     fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&lang=ru&appid=b1ef2fb4dfe2ab9c8640525cfc37cf19`)
@@ -35,10 +57,13 @@ function NewCityAdd () {
         if (data.cod >= 200 && data.cod < 300) {
           dispatch({type: 'ADD_NEW_CITY', city: city, data: data});
           setNewCity('');
+          // localStorage.setItem('cities', localStorage.getItem('cities') + ',' + cities);
         } else {
           alert(data.message);
         }
       })        
+      // console.log(localStorage.getItem('cities'));
+      // localStorage.setItem('cities', cities);
   }
 
   return (
