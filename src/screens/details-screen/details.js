@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { useEffect} from 'react';
 import { useParams, Link} from "react-router-dom";
-import {useSelector, useDispatch} from 'react-redux';
-
+import { useSelector, useDispatch } from 'react-redux';
 
 function Details () {
 
@@ -10,14 +9,19 @@ function Details () {
   const dispatch = useDispatch();
 
   function cityGet (city) {
-    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&lang=ru&appid=b1ef2fb4dfe2ab9c8640525cfc37cf19`)
-      .then(response => response.json())
-      .then(data => dispatch({type: 'ADD_NEW_CITY', city: city, data: data}))           
+      fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&lang=ru&appid=b1ef2fb4dfe2ab9c8640525cfc37cf19`)
+        .then(response => response.json())
+        .then(data => dispatch({type: 'ADD_NEW_CITY', city: city, data: data}))           
   }
 
-  if (!data) {
-    cityGet(city);
-  }
+  useEffect(() => {
+    if (!data) {
+      cityGet(city);
+    }
+  }, []);
+
+  
+
 
     return (
       data ? (
@@ -34,7 +38,7 @@ function Details () {
             </span>
           </div>
           <div>
-            <button onClick={() => cityGet(city)}>
+            <button >
               Update
             </button>
             <button onClick={() => dispatch({type: "DELETE_CITY", city: city})}>

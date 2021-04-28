@@ -5,11 +5,10 @@ import Card from './Card';
 import NewCityAdd from './NewCityAdd';
 
 function MainScreen () {
+
     const cities = useSelector(state => state.cities);
     const dispatch = useDispatch();  
-  
     const localStorageCities = localStorage.getItem('cities');
-    // console.log(Boolean(localStorageCities));
   
     function cityGet (city) {
         fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&lang=ru&appid=b1ef2fb4dfe2ab9c8640525cfc37cf19`)
@@ -18,15 +17,10 @@ function MainScreen () {
     }
   
     useEffect(() => {
-      if (localStorage.getItem('cities')) {
-        // localStorage.getItem('cities').split(',').forEach(city => cityGet(city));
-        
+      if (localStorage.getItem('cities')) {        
         localStorage.getItem('cities').split(',').forEach(city => {
-          console.log('city', city);
           cityGet(city);
-        });
-        // console.log('array',ff);
-      
+        })      
       } else {
         cities.forEach(city => cityGet(city));
       }

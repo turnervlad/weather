@@ -22,7 +22,6 @@ export const store = createStore(reducer, initialState);
 function reducer(state = initialState, action) {  
   switch (action.type) {
     case ADD_CITY_DATA:
-      // setToLocalStorage(state.cities);
       return {
         ...state,
         citiesData: {
@@ -32,7 +31,6 @@ function reducer(state = initialState, action) {
       }
     case ADD_NEW_CITY:
       setToLocalStorage(action.city);
-
       return {
         ...state,
         cities: [...state.cities, action.city],
@@ -43,7 +41,6 @@ function reducer(state = initialState, action) {
       }
     case DELETE_CITY:
       delete state.citiesData[action.city];
-      // localStorage.setItem('cities', state.cities.filter(x => x !== action.city));
       localStorage.setItem('cities', localStorage.getItem('cities').split(',').filter(x => x !== action.city));
       return {
         ...state,
@@ -55,9 +52,3 @@ function reducer(state = initialState, action) {
   }
 }
 
-// store.dispatch({
-//   type: 'ADD_NEW_CITY',
-//   text: 'Madrid'
-// })
-
-// console.log(store.getState());
