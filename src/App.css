@@ -5,7 +5,10 @@
 
 .App {
   display: flex;
-
+  flex-direction: column;
+}
+.main_container {
+  display: flex;
 }
 
 .card {
@@ -19,4 +22,13 @@
   border-radius: 10%;
   height: 300px;
   background-color: rgb(209, 236, 159);
+}
+
+.detailed_container {
+  display: flex;
+  width: 400px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  border: 5px solid green;
 }
