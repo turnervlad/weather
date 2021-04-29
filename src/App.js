@@ -11,10 +11,10 @@ function App() {
   return (
     <Router>
         <Switch>
-          <Route path="/:city">
+          <Route path="/weather/:city">
             <Details />
           </Route>       
-          <Route path="/">
+          <Route path="/weather/">
             <MainScreen /> 
           </Route> 
         </Switch>   
