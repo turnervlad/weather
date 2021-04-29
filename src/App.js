@@ -3,22 +3,22 @@ import './App.css';
 import MainScreen from "./screens/main-screen/main-screen";
 import Details from './screens/details-screen/details';
 import {
-  BrowserRouter as Router, Route, Switch
+  BrowserRouter as Router, Route, Switch, HashRouter
 } from "react-router-dom";
 
 
 function App() {
   return (
-    <Router>
+    <HashRouter>
         <Switch>
-          <Route path="/weather/:city">
+          <Route exact path="/weather/:city">
             <Details />
           </Route>       
-          <Route path="/weather/">
+          <Route exact path="/weather/">
             <MainScreen /> 
           </Route> 
         </Switch>   
-    </Router>
+    </HashRouter>
   )
 }
 
