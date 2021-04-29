@@ -34,6 +34,7 @@ function reducer(state = initialState, action) {
         }
       }
     case ADD_NEW_CITY:
+      // console.log(action);      
       if (localStorage.getItem('cities')) {
         if (!localStorage.getItem('cities').split(',').includes(action.city)) {
           setToLocalStorage(action.city);
