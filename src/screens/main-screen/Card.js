@@ -10,23 +10,23 @@ function Card({city, cityGet}) {
   
     return data ? (
       <div className="card">
-        <div>{city}</div>
+        <div className="city">{city.toUpperCase()}</div>
         <div>Daily temperature:
           <span className="temperature">
             {data.main.temp}
           </span>
         </div>
-        <div>feels like:
+        <div>Feels like:
           <span className="feels__like">
           {data.main.feels_like}
           </span>
         </div>
-        <div>
+        <div className="buttons">
           <button onClick={() => cityGet(city)}>
             Update
           </button>
           <button onClick={() => dispatch({type: "DELETE_CITY", city: city})}>
-            delete
+            Delete
           </button>
           <Link to={"/"+city}>
             Detailed

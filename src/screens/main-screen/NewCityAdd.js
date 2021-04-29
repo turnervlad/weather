@@ -21,9 +21,10 @@ function NewCityAdd () {
     }
   
     return (
-      <div>
+      <div className="addnewcity_wrapper">
+        <div className="title">ADD NEW CITY</div>
         <input onChange={(event) => setNewCity(event.target.value)} value={newCity} placeholder='type the city...'></input>
-        <button onClick={() => addNewCity(newCity)}>submit</button>
+        <button onClick={() => addNewCity(newCity)}>Submit</button>
       </div>
     )
 }
