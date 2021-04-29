@@ -14,7 +14,7 @@ function App() {
           <Route path="/:city">
             <Details />
           </Route>       
-          <Route path="/">
+          <Route path="/main">
             <MainScreen /> 
           </Route> 
         </Switch>   

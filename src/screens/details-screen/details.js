@@ -9,7 +9,7 @@ function Details() {
   const isLoadingDetails = useSelector(state => state.isLoadingDetails);
   // const cities = useSelector(state => state.cities);
   // console.log(cities);
-  // console.log(data);
+  console.log(data);
 
   function cityGet(city) {
     // console.log('load', isLoadingDetails);
@@ -25,9 +25,9 @@ function Details() {
   }
 
   useEffect(() => {
-    console.log(data);
+    console.log(city);
     if (!data) {
-      cityGet(city);
+      // cityGet(city);
     }
     dispatch({type: 'SET_LOADING_DETAILS_PAGE', payload: false});
   }, []);

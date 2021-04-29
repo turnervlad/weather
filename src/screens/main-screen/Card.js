@@ -22,7 +22,7 @@ function Card({city, cityGet}) {
           </span>
         </div>
         <div className="buttons">
-          <Link to={"/"+city}>
+          <Link to={"/"+ city}>
             Detailed
           </Link>
           <button onClick={() => cityGet(city)}>
