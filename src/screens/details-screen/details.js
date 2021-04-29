@@ -32,11 +32,9 @@ function Details() {
     dispatch({type: 'SET_LOADING_DETAILS_PAGE', payload: false});
   }, []);
 
-  return data ? (
-    <>
-      {isLoadingDetails ? <div className="detail_loader">Loading</div> : null}
+  return data ? (     
       <div className="details">
-      
+        {isLoadingDetails ? <div className="detail_loader">Loading</div> : null}
         <div>{city.toUpperCase()}</div>
         <div>{data.weather[0].main}</div>
         <div>Temperature now<span>{data.main.temp}</span></div>
@@ -47,7 +45,6 @@ function Details() {
         <div>Pressure<span>{data.main.pressure}</span></div>
         <div>Wind speed<span>{data.wind.speed}</span></div>      
       </div>
-    </>
   ) : null;
 }
 

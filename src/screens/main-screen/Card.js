@@ -22,15 +22,16 @@ function Card({city, cityGet}) {
           </span>
         </div>
         <div className="buttons">
+          <Link to={"/"+city}>
+            Detailed
+          </Link>
           <button onClick={() => cityGet(city)}>
             Update
           </button>
           <button onClick={() => dispatch({type: "DELETE_CITY", city: city})}>
             Delete
           </button>
-          <Link to={"/"+city}>
-            Detailed
-          </Link>
+          
         </div>
       </div>
     ) : null

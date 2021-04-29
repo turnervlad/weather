@@ -115,21 +115,26 @@ button {
   padding-left: 20px;
   font-weight: 700;
 }
-.main_loader {
-  /* position: absolute; */
-  bottom: 0;
+.main_loader, .detail_loader {
   top: 0;
   left: 0;
   font-size: 60px;
 }
-
-.detail_loader {
-  /* position: absolute; */
-  top: 0;
-  left: 0;
-  width: 200px;
-  height: 200px;
-  border: 3px solid red;
+a {
+  color: #077b8a;
+  text-decoration: none;
+  padding-bottom: 10px;
+  font-size: 20px;
+  font-weight: 600;
 }
+
+a:hover {
+  color:#00A0C6; 
+  text-decoration: underline; 
+  cursor:pointer;
+
+}
+
+
 
 
