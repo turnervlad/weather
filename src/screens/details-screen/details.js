@@ -27,7 +27,7 @@ function Details() {
   useEffect(() => {
     console.log(city);
     if (!data) {
-      // cityGet(city);
+      cityGet(city);
     }
     dispatch({type: 'SET_LOADING_DETAILS_PAGE', payload: false});
   }, []);
