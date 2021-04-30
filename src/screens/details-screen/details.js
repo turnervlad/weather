@@ -1,35 +1,26 @@
-import React, { useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import React, { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { ADD_NEW_CITY, SET_LOADING_DETAILS_PAGE } from '../../app/store';
 
 function Details() {
   let { city } = useParams();
   const data = useSelector(state => state.citiesData[city]);
   const dispatch = useDispatch();
   const isLoadingDetails = useSelector(state => state.isLoadingDetails);
-  // const cities = useSelector(state => state.cities);
-  // console.log(cities);
-  console.log(data);
 
   function cityGet(city) {
-    // console.log('load', isLoadingDetails);
-    // dispatch({type: 'SET_LOADING_DETAILS_PAGE', payload: true});
-    fetch(
-      `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=b1ef2fb4dfe2ab9c8640525cfc37cf19`
-    )
-      .then((response) => response.json())
-      .then((data) =>
-        dispatch({ type: "ADD_NEW_CITY", city: city, data: data })
-      );    
-    // dispatch({type: 'SET_LOADING_DETAILS_PAGE', payload: false});
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=b1ef2fb4dfe2ab9c8640525cfc37cf19`)
+      .then(response => response.json())
+      .then(data => dispatch({ type: ADD_NEW_CITY, city: city, data: data })
+      )
   }
 
   useEffect(() => {
-    console.log(city);
     if (!data) {
       cityGet(city);
     }
-    dispatch({type: 'SET_LOADING_DETAILS_PAGE', payload: false});
+    dispatch({type: SET_LOADING_DETAILS_PAGE, payload: false});
   }, []);
 
   return data ? (     

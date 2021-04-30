@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import "../../App.css";
 import Card from "./Card";
 import NewCityAdd from "./NewCityAdd";
+import { ADD_CITY_DATA, SET_LOADING_MAIN_PAGE } from '../../app/store';
 
 function MainScreen() {
   const cities = useSelector(state => state.cities);
@@ -13,14 +14,14 @@ function MainScreen() {
   function cityGet(city) {
     fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&lang=ru&appid=b1ef2fb4dfe2ab9c8640525cfc37cf19`)
       .then(response => response.json())
-      .then(data => dispatch({ type: "ADD_CITY_DATA", city: city, data: data }))
+      .then(data => dispatch({ type: ADD_CITY_DATA, city: city, data: data }))
   }
 
   useEffect(() => {
     if (localStorageCities) {
         localStorageCities.split(",").forEach(city => cityGet(city));
     }     
-    dispatch({ type: "SET_LOADING_MAIN_PAGE", payload: false });
+    dispatch({ type: SET_LOADING_MAIN_PAGE, payload: false });
   }, [])
 
   return (

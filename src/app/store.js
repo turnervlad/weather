@@ -1,10 +1,10 @@
 import { createStore } from "redux";
 
-const ADD_NEW_CITY = 'ADD_NEW_CITY';
-const ADD_CITY_DATA = 'ADD_CITY_DATA';
-const DELETE_CITY = "DELETE_CITY";
-const SET_LOADING_MAIN_PAGE = 'SET_LOADING_MAIN_PAGE';
-const SET_LOADING_DETAILS_PAGE = 'SET_LOADING_DETAILS_PAGE';
+export const ADD_NEW_CITY = 'ADD_NEW_CITY';
+export const ADD_CITY_DATA = 'ADD_CITY_DATA';
+export const DELETE_CITY = "DELETE_CITY";
+export const SET_LOADING_MAIN_PAGE = 'SET_LOADING_MAIN_PAGE';
+export const SET_LOADING_DETAILS_PAGE = 'SET_LOADING_DETAILS_PAGE';
 
 function setToLocalStorage(newCity) {
   if (localStorage.getItem('cities')) {
@@ -33,8 +33,7 @@ function reducer(state = initialState, action) {
           [action.city]: action.data      
         }
       }
-    case ADD_NEW_CITY:
-      // console.log(action);      
+    case ADD_NEW_CITY:      
       if (localStorage.getItem('cities')) {
         if (!localStorage.getItem('cities').split(',').includes(action.city)) {
           setToLocalStorage(action.city);

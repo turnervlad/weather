@@ -20,7 +20,7 @@
   min-height: 450px;
 }
 
-.addnewcity_wrapper {
+.addnewcity_container {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -69,7 +69,6 @@ input {
   outline: none;
   border: 3px solid #077b8a;
   border-radius: 5px;
-  /* background: rgba(198, 255, 196, 0.897); */
   background: rgb(209, 236, 159);
   padding-left: 10px;
   margin-top: 10px;
@@ -81,19 +80,13 @@ button {
   width: 100%;
   max-width: 100px;
   background-color: #d72631;
-  border: 3px solid #077b8a;
+  border: 3px solid #a2d5c6;
   border-radius: 5px;
   cursor: pointer;
-  /* outline: rgba(43, 168, 39, 0.897) 5px auto; */
   color: #5c3c92;
   font-size: 16px;
   font-weight: 800;
 }
-
-
-
-
-
 
 .details {
   margin-top: 20px;
@@ -101,7 +94,6 @@ button {
   width: 90%;
   max-width: 1170px;
   flex-direction: column;
-  border: 5px solid green;
   padding: 2% 5%;
   background: #a2d5c6;
   border: 5px solid #077b8a;
@@ -127,12 +119,10 @@ a {
   font-size: 20px;
   font-weight: 600;
 }
-
 a:hover {
   color:#00A0C6; 
   text-decoration: underline; 
   cursor:pointer;
-
 }
 
 
